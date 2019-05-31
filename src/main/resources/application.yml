@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: dev
+
+
+
+  ################################################
+  application:
+    name: Shop Demo
+  mail:
+    host: smtp.gmail.com
+    username: linhlantrang080@gmail.com
+    password: jysflohmiurvwgow
+
+    port: 587
+    properties.mail.smtp.starttls.enable: true
+################################################
+server:
+  port: 8080
+  use-forward-headers: true

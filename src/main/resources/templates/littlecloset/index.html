@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Little Closet template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>JUST COFFEE</title>
+
+	<link rel="stylesheet" type="text/css" th:href="@{css/gridbootstrap.css}">
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=vietnamese" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{styles/fontawesome/css/fontawesome.min.css}">
+	<link rel="icon" th:href="@{images/favicon.jpg}">
+	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+</head>
+<body>
+<header class="header">
+	<div class="header-div-container row">
+		<div class="header-item col-lg-3">
+			<a href="../homepage/homepage.html" title="home">home</a>
+		</div>
+		<div class="header-item col-lg-3">
+			<a href="../about/about.html" title="about">about</a>
+		</div>
+		<div class="header-item col-lg-3">
+			<a href="#" title="menu">menu</a>
+		</div>
+		<div class="header-item col-lg-3">
+			<a href="../where/where.html" title="where">where</a>
+		</div>
+	</div>
+</header><!-- /header -->
+<content class="content">
+	<div class="container">
+		<div class="row section-1">
+			<div class="col-lg-3 sidebar">
+				<nav class="sidebar-container">
+					<ul class="header-nav-ul">
+						<li class="header-li-sidebar"><a href="../employee/employee.html" class="sidebar-item">employee</a></li>
+						<li class="header-li-sidebar"><a href="#" class="sidebar-item">customer</a></li>
+						<li class="header-li-sidebar"><a href="menu.html" class="sidebar-item sidebar-menu">menu</a>
+							<div class="select-down">
+								<ul class="select-down-ul">
+									<li class="select-down-li"><a href="#mojito" class="select-down-a">mojito</a></li>
+									<li class="select-down-li"><a href="#coffee" class="select-down-a">coffee</a></li>
+									<li class="select-down-li"><a href="#milkshake" class="select-down-a">milkshake</a></li>
+									<li class="select-down-li"><a href="#fruitjuice" class="select-down-a">fruit juice</a></li>
+									<li class="select-down-li"><a href="#smoothies" class="select-down-a">smoothies</a></li>
+									<li class="select-down-li"><a href="#fruittea" class="select-down-a">fruit tea</a></li>
+									<li class="select-down-li"><a href="#greek-yogurt" class="select-down-a">greek yogurt</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="header-li-sidebar"><a href="#" class="sidebar-item">order</a></li>
+						<li class="header-li-sidebar"><a href="#" class="sidebar-item">import</a></li>
+						<li class="header-li-sidebar"><a href="#" class="sidebar-item">supplier</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="row col-lg-9 menu">
+				<div class="col-lg-9-container-menu">
+					<div class="col-lg-12 title">
+						<h3 class="menu-title">menu</h3>
+					</div>
+					<div class="diss col-lg-12">
+						<tr th:each="category,iterStat : ${categories}">
+							<div class="menu-item col-lg-12" id="mojito">
+								<h3 th:text="${category.categoryName}"></h3>
+								<p th:text="${category.description}"></p>
+								<div class="div-container">
+								<div th:each="product,iterStat2 : ${category.getProducts()}">
+										<div class="drink-item col-lg-6">
+											<h3 class="item" th:text="${product.productName}"></h3>
+											<img th:src="${product.url}">
+											<h4 th:text="${product.price}"></h4>
+											<a href="#" class="order-btn">order</a>
+										</div>
+								</div>
+								</div>
+							</div>
+						</tr>
+
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</content>
+<footer class=" row footer">
+	<div class="footer-container">
+		<div class="index">
+			<div class="col-lg-4 logo">
+				<h1 class="footer-title">JUST COFFEE</h1>
+			</div>
+			<div class="col-lg-4 hepl">
+				<h2 class="help-title">help</h2>
+				<h3>hotline : 1900 1909</h3>
+				<h3>hotmail : <a href="#" title="">justcoffee.dn@gmail.com</a></h3>
+			</div>
+			<div class="col-lg-4 address">
+				<h2 class="address-title">address</h2>
+				<h3>65 Ngo Xuan Thu, Hoa Hiep Bac, Lien Chieu, Da Nang</h3>
+				<h3>0903904127</h3>
+				<h3>(0236) 3 772 540</h3>
+				<h3>justcoffee.vn</h3>
+			</div>
+		</div>
+	</div>
+	<div class="footer-container copyright">
+		<span class="footer-left">Copyright © 2019 Just Coffee. All rights reserved.</span>
+		<div class="footer-right">
+			<span class="follow-span">follow us</span>
+			<ul class="footer-menu-ul">
+				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+				<li class="footer-li-item last"><a href="#" class="footer-menu-right-a"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+</body>
+</html>
