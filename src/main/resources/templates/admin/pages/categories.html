@@ -41,47 +41,50 @@
                     </div>
                     <div class="card-body">
 
-                        <div style="text-align: right; padding: 20px">
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New category
+                            </a>
+                        </div>
 
-                            <button class="text-primary" data-toggle="modal" data-target="#newCategory" style="padding: 15px 40px 15px 40px; background: beige">
-                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                                New Category
-                            </button>
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example"> Add category</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/categories}">
 
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
-                                 role="dialog" tabindex="-1" id="newCategory">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <form action="#" method="post"  th:action="@{/admin/categories}"
-                                                  th:object="${categories}">
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="category name" type="text" name="categoryName"/>
+                                            </div>
 
-                                                <h5 class="text-center">New category</h5>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="description"
+                                                       type="text" name="description"/>
+                                            </div>
 
-                                                <div class="form-group">
-                                                    <label>Category name</label>
-                                                    <input class="form-control" placeholder="Category name" type="text" name="categoryName"/>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Description</label>
-                                                    <input class="form-control" placeholder="Description" type="text" name="description"/>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                                            type="button">Close
-                                                    </button>
-                                                    <button class="btn btn-primary" type="submit">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit" >Save
+                                                </button>
+                                            </div>
+                                        </form>
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="table-responsive">
                             <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
@@ -106,30 +109,37 @@
                                     <th scope="row" th:text="${iterStat.count}"></th>
                                     <td th:text="${category.categoryName}"></td>
                                     <td th:text="${category.description}"></td>
-
                                     <td>
                                         <a class="text-primary" data-toggle="modal"
                                            th:data-target="'#edit-'+${category.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <div aria-hidden="true" aria-labelledby="editCategory" class="modal fade"
+
+
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'edit-'+${category.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"> Edit category</h5>
+                                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                                type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                     <div class="modal-body">
                                                         <form action="#" method="post"  th:action="@{/admin/categories}"
                                                               th:object="${category}">
-                                                            <h5 class="text-center">Edit category</h5>
 
-                                                            <input name="id"  th:value="*{id}" type="hidden" />
+                                                            <input name="id" th:value="*{id}" type="hidden"/>
 
                                                             <div class="form-group">
-                                                                <input class="form-control" placeholder="Category name"
+                                                                <input class="form-control" placeholder="category name"
                                                                        th:value="*{categoryName}" type="text" name="categoryName"/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <input class="form-control" placeholder="Description"
+                                                                <input class="form-control" placeholder="description"
                                                                        th:value="*{description}" type="text" name="description"/>
                                                             </div>
 
@@ -137,26 +147,32 @@
                                                                 <button class="btn btn-secondary" data-dismiss="modal"
                                                                         type="button">Close
                                                                 </button>
-                                                                <button class="btn btn-primary" type="submit">Save
+                                                                <button class="btn btn-primary" type="submit" >Save
                                                                 </button>
                                                             </div>
                                                         </form>
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
 
+
+
+
+                                        <!-- Button trigger delete -->
                                         <a class="text-danger" data- data-toggle="modal"
                                            th:data-target="'#popup-'+${category.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <!-- Modal -->
-                                        <div aria-hidden="true" aria-labelledby="deleteCategory" class="modal fade"
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'popup-'+${category.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteCategory">Warning !!!</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
@@ -175,6 +191,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
 
                                     </td>
                                 </tr>

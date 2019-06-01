@@ -40,14 +40,103 @@
                         <h6 class="m-0 font-weight-bold text-primary">Customers Example</h6>
                     </div>
                     <div class="card-body">
+
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New Product
+                            </a>
+                        </div>
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example">New Product</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/products}">
+
+
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name">Product Name :</label>
+                                                <input class="form-control" name="productName"
+                                                       type="text">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name" style="display: block">Category Name :</label>
+                                                <select  name="categoryModel">
+                                                    <option th:each="category,iterStat : ${categories}"
+                                                            th:value="${category.id}"
+                                                            th:text="${category.categoryName}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name" style="display: block">Supplier Name :</label>
+                                                <select  name="supplierModel">
+                                                    <option th:each="supplier,iterStat : ${suppliers}"
+                                                            th:value="${supplier.id}"
+                                                            th:text="${supplier.supplierName}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name">unit :</label>
+                                                <input class="form-control"
+                                                       name="unit"
+                                                       type="text">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name">price :</label>
+                                                <input class="form-control" id="recipient-name1"
+                                                       name="price"
+                                                       type="text">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name">description :</label>
+                                                <input class="form-control"
+                                                       name="description"
+                                                       type="text">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="recipient-name">imageurl :</label>
+                                                <input class="form-control"
+                                                       name="imageurl"
+                                                       type="text">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit">Save
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="table-responsive">
                             <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
                                 <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Product Name</th>
+                                    <th>Supplier Name</th>
+                                    <th>Category Name</th>
                                     <th>Price</th>
+                                    <th>Description</th>
                                     <th>Unit</th>
+                                    <th>Image</th>
 
                                     <th>Action</th>
                                 </tr>
@@ -55,9 +144,13 @@
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Customer Name</th>
-                                    <th>Contact Name</th>
-                                    <th>Address</th>
+                                    <th>Product Name</th>
+                                    <th>Supplier Name</th>
+                                    <th>Category Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Unit</th>
+                                    <th>Image</th>
 
                                     <th>Action</th>
                                 </tr>
@@ -66,8 +159,12 @@
                                 <tr th:each="product,iterStat : ${products}">
                                     <th scope="row" th:text="${iterStat.count}"></th>
                                     <td th:text="${product.productName}"></td>
+                                    <td th:text="${product.getSupplierModel().getSupplierName()}"></td>
+                                    <td th:text="${product.getCategoryModel().getCategoryName()}"></td>
                                     <td th:text="${product.price}"></td>
+                                    <td th:text="${product.description}"></td>
                                     <td th:text="${product.unit}"></td>
+                                    <td><img th:src="${product.imageurl}" style="width:40%;height: auto"></td>
 
                                     <td>
 
@@ -88,26 +185,70 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form>
+                                                        <form action="#" method="post"  th:action="@{/admin/products}"
+                                                              th:object="${product}">
+
+                                                            <input name="id" th:value="*{id}" type="hidden"/>
+
                                                             <div class="form-group">
-                                                                <label class="col-form-label" for="recipient-name">Recipient:</label>
-                                                                <input class="form-control" id="recipient-name"
+                                                                <label class="col-form-label" for="recipient-name">Product Name :</label>
+                                                                <input class="form-control" name="productName"
+                                                                       th:value="*{productName}"
+                                                                       type="text">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-form-label" for="recipient-name" style="display: block">Category Name :</label>
+                                                                <select  name="categoryModel">
+                                                                    <option th:each="category,iterStat : ${categories}"
+                                                                            th:value="${category.id}"
+                                                                            th:text="${category.categoryName}"
+                                                                            th:selected="${category.id==product.categoryModel.id}"></option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-form-label" for="recipient-name" style="display: block">Supplier Name :</label>
+                                                                <select  name="supplierModel">
+                                                                    <option th:each="supplier,iterStat : ${suppliers}"
+                                                                            th:value="${supplier.id}"
+                                                                            th:text="${supplier.supplierName}"
+                                                                            th:selected="${supplier.id==product.supplierModel.id}"></option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-form-label" for="recipient-name">unit :</label>
+                                                                <input class="form-control"
+                                                                       th:value="*{unit}"
+                                                                       name="unit"
                                                                        type="text">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="col-form-label" for="message-text">Message:</label>
-                                                                <textarea class="form-control"
-                                                                          id="message-text"></textarea>
+                                                                <label class="col-form-label" for="recipient-name">description :</label>
+                                                                <input class="form-control"
+                                                                       th:value="*{description}"
+                                                                       name="description"
+                                                                       type="text">
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label class="col-form-label" for="recipient-name">imageurl :</label>
+                                                                <input class="form-control" id="recipient-name"
+                                                                       th:value="*{imageurl}"
+                                                                       name="imageurl"
+                                                                       type="text">
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                                        type="button">Close
+                                                                </button>
+                                                                <button class="btn btn-primary" type="submit">Save
+                                                                </button>
+                                                            </div>
+
                                                         </form>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-secondary" data-dismiss="modal"
-                                                                type="button">Close
-                                                        </button>
-                                                        <button class="btn btn-primary" type="button">Send message
-                                                        </button>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -118,12 +259,12 @@
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <!-- Modal -->
-                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'popup-'+${product.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Warning !!!</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
@@ -180,4 +321,4 @@
 <!-- Page level custom scripts -->
 <script th:src="@{/webjars/startbootstrap-sb-admin-2/4.0.2/js/demo/datatables-demo.js}"></script>
 </body>
-</html>
+</html>l>

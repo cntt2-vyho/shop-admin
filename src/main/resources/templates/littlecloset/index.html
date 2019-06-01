@@ -23,7 +23,7 @@
 			<a href="../homepage/homepage.html" title="home">home</a>
 		</div>
 		<div class="header-item col-lg-3">
-			<a href="../about/about.html" title="about">about</a>
+			<a th:href="@{/about.html}" title="about">about</a>
 		</div>
 		<div class="header-item col-lg-3">
 			<a href="#" title="menu">menu</a>
@@ -34,7 +34,23 @@
 	</div>
 </header><!-- /header -->
 <content class="content">
-	<div class="container">
+	<div class="content-content">
+		<div class="container-about col-lg-12">
+			<div class="text-about">
+				<h3 class="title-about">This is a story</h3>
+				<p class="text-p">Hi, My name is Vy, and this is my coffee shop.<br>
+					It is now 2019, and I am writing the first lines to introduce my coffee shop. I'm a programmer, and I'm passionate about business, that's why I opened this cafe. Coffee beans are imported from Buon Ma Thuoc, the coffee capital of Vietnam, here, mainly grown arabica, and I have a farm specializing in coffee, and they are also suppliers of coffee mainly for my shop, the owner here is my aunt.<br>
+					At <b><i>Just Coffee</i></b>, coffee is used as a whole roasted coffee, so don't go to the shop and ask if you have coffee coffee. I think that products from roasted coffee will bring absolute enjoyment to users. and i ti, <b><i>Just Coffee</i></b> will be a great place for devotees who love coffee in Danang and many other places.<br>
+					It's funny that in <b><i>Just Coffee</i></b> but not just coffee, here we also offer mojito, fruit juice, fruit tea, smoothies, milkshake and greek yogurt, a healthy drink that is good for you and has a beauty effect. You know, for business purposes.<br>
+					<b><i>Just Coffee</i></b> is located at 65 Ngo Xuan Thu streets, a peaceful places, with a modern space with a bit of classic, will definitely be a place suitable for all ages, all interests, but especially suitable for those who love coffee approved to talk.<br>
+					Hope you enjoy us, both in terms of brand, space, staff and how to serve here.<br>
+					So, welcome to <b><i>Just Coffee</i></b>.<br>
+					Love, Vy.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="container col-lg-12">
 		<div class="row section-1">
 			<div class="col-lg-3 sidebar">
 				<nav class="sidebar-container">
@@ -50,7 +66,7 @@
 									<li class="select-down-li"><a href="#fruitjuice" class="select-down-a">fruit juice</a></li>
 									<li class="select-down-li"><a href="#smoothies" class="select-down-a">smoothies</a></li>
 									<li class="select-down-li"><a href="#fruittea" class="select-down-a">fruit tea</a></li>
-									<li class="select-down-li"><a href="#greek-yogurt" class="select-down-a">greek yogurt</a></li>
+									<li class="select-down-li"><a href="#greekyogurt" class="select-down-a">greek yogurt</a></li>
 								</ul>
 							</div>
 						</li>
@@ -67,7 +83,7 @@
 					</div>
 					<div class="diss col-lg-12">
 						<tr th:each="category,iterStat : ${categories}">
-							<div class="menu-item col-lg-12" id="mojito">
+							<div class="menu-item col-lg-12" th:id="${category.getCategoryName()}">
 								<h3 th:text="${category.categoryName}"></h3>
 								<p th:text="${category.description}"></p>
 								<div class="div-container">
@@ -75,7 +91,7 @@
 										<div class="drink-item col-lg-6">
 											<h3 class="item" th:text="${product.productName}"></h3>
 											<img th:src="${product.url}">
-											<h4 th:text="${product.price}"></h4>
+											<h4 th:text="${product.price}">price ($) : </h4>
 											<a href="#" class="order-btn">order</a>
 										</div>
 								</div>
