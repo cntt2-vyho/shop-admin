@@ -2,38 +2,13 @@
 <html lang="en"
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="littlecloset/layout::headhome"></head>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="Little Closet template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>JUST COFFEE</title>
-
-	<link rel="stylesheet" type="text/css" th:href="@{css/gridbootstrap.css}">
-	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=vietnamese" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" th:href="@{styles/fontawesome/css/fontawesome.min.css}">
-	<link rel="icon" th:href="@{images/favicon.jpg}">
 	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
 </head>
 <body>
-<header class="header">
-	<div class="header-div-container row">
-		<div class="header-item col-lg-3">
-			<a href="../homepage/homepage.html" title="home">home</a>
-		</div>
-		<div class="header-item col-lg-3">
-			<a th:href="@{/about.html}" title="about">about</a>
-		</div>
-		<div class="header-item col-lg-3">
-			<a href="#" title="menu">menu</a>
-		</div>
-		<div class="header-item col-lg-3">
-			<a href="../where/where.html" title="where">where</a>
-		</div>
-	</div>
-</header><!-- /header -->
-<content class="content">
+<header class="header" th:replace="littlecloset/layout::headerhome"></header>
+<div class="content">
 	<div class="content-content">
 		<div class="container-about col-lg-12">
 			<div class="text-about">
@@ -50,7 +25,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container col-lg-12">
+	<div class="container col-lg-12" style="margin: 0px">
 		<div class="row section-1">
 			<div class="col-lg-3 sidebar">
 				<nav class="sidebar-container">
@@ -91,8 +66,8 @@
 										<div class="drink-item col-lg-6">
 											<h3 class="item" th:text="${product.productName}"></h3>
 											<img th:src="${product.url}">
-											<h4 th:text="${product.price}">price ($) : </h4>
-											<a href="#" class="order-btn">order</a>
+											<h4><span>price: <h4 th:text="${product.price}" style="display: inline-block"></h4> $</span></h4>
+											<a th:href="@{cart/cart}" class="order-btn">order</a>
 										</div>
 								</div>
 								</div>
@@ -105,40 +80,7 @@
 			</div>
 		</div>
 	</div>
-</content>
-<footer class=" row footer">
-	<div class="footer-container">
-		<div class="index">
-			<div class="col-lg-4 logo">
-				<h1 class="footer-title">JUST COFFEE</h1>
-			</div>
-			<div class="col-lg-4 hepl">
-				<h2 class="help-title">help</h2>
-				<h3>hotline : 1900 1909</h3>
-				<h3>hotmail : <a href="#" title="">justcoffee.dn@gmail.com</a></h3>
-			</div>
-			<div class="col-lg-4 address">
-				<h2 class="address-title">address</h2>
-				<h3>65 Ngo Xuan Thu, Hoa Hiep Bac, Lien Chieu, Da Nang</h3>
-				<h3>0903904127</h3>
-				<h3>(0236) 3 772 540</h3>
-				<h3>justcoffee.vn</h3>
-			</div>
-		</div>
-	</div>
-	<div class="footer-container copyright">
-		<span class="footer-left">Copyright © 2019 Just Coffee. All rights reserved.</span>
-		<div class="footer-right">
-			<span class="follow-span">follow us</span>
-			<ul class="footer-menu-ul">
-				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-google" aria-hidden="true"></i></a></li>
-				<li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-				<li class="footer-li-item last"><a href="#" class="footer-menu-right-a"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-			</ul>
-		</div>
-	</div>
-</footer>
+</div>
+<footer class=" row footer" th:replace="littlecloset/layout::footerhome"></footer>
 </body>
 </html>

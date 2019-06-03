@@ -55,4 +55,5 @@ public class ProductModel extends BaseModel<ProductModel> {
     private List<OrderDetailModel> orderDetails = new ArrayList<>();
 
     private String url;
+
 }
