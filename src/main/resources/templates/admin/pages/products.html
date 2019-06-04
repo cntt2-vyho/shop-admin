@@ -164,7 +164,7 @@
                                     <td th:text="${product.price}"></td>
                                     <td th:text="${product.description}"></td>
                                     <td th:text="${product.unit}"></td>
-                                    <td><img th:src="${product.imageurl}" style="width:40%;height: auto"></td>
+                                    <td><img th:src="${product.url}" style="width:40%;height: auto"></td>
 
                                     <td>
 
@@ -234,7 +234,7 @@
                                                             <div class="form-group">
                                                                 <label class="col-form-label" for="recipient-name">imageurl :</label>
                                                                 <input class="form-control" id="recipient-name"
-                                                                       th:value="*{imageurl}"
+                                                                       th:value="*{url}"
                                                                        name="imageurl"
                                                                        type="text">
                                                             </div>

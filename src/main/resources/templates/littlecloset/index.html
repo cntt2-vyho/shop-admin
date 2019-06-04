@@ -4,28 +4,59 @@
 	  xmlns:th="http://www.thymeleaf.org">
 <head th:replace="littlecloset/layout::headhome"></head>
 <head>
-	<link rel="stylesheet" type="text/css" th:href="@{css/style.css}">
+	<style>
+		.sidebar-menu {
+			position: relative;
+		}
+		.menu {
+			float:right;
+			width: 50%;
+			margin-right: 250px;
+			border-left: solid 2px #EA8025;
+		}
+		.diss{
+			padding: 0;
+		}
+		.select-down-li {
+			list-style: none;
+		}
+		.select-down-a {
+			text-decoration: none;
+			color: #000;
+		}
+		.select-down-a:hover {
+			text-decoration: underline;
+		}
+		.menu-item {
+			border: none;
+		}
+		.order-btn {
+			font-size: 16px;
+			font-weight: 700;
+			color: #fff;
+			display: inline-block;
+			background: #EA8025;
+			vertical-align: middle;
+			border: 2px solid #EA8025;
+			padding: 6px 15px;
+			text-decoration:  none;
+			transition: all 0.3s;
+		}
+		.drink-item:hover .order-btn {
+			background: transparent;
+			color: #EA8025;
+			transition: all 0.3s;
+			cursor: pointer;
+		}
+		.div-container {
+			margin-left: 100px;
+		}
+	</style>
 </head>
 <body>
 <header class="header" th:replace="littlecloset/layout::headerhome"></header>
-<div class="content">
-	<div class="content-content">
-		<div class="container-about col-lg-12">
-			<div class="text-about">
-				<h3 class="title-about">This is a story</h3>
-				<p class="text-p">Hi, My name is Vy, and this is my coffee shop.<br>
-					It is now 2019, and I am writing the first lines to introduce my coffee shop. I'm a programmer, and I'm passionate about business, that's why I opened this cafe. Coffee beans are imported from Buon Ma Thuoc, the coffee capital of Vietnam, here, mainly grown arabica, and I have a farm specializing in coffee, and they are also suppliers of coffee mainly for my shop, the owner here is my aunt.<br>
-					At <b><i>Just Coffee</i></b>, coffee is used as a whole roasted coffee, so don't go to the shop and ask if you have coffee coffee. I think that products from roasted coffee will bring absolute enjoyment to users. and i ti, <b><i>Just Coffee</i></b> will be a great place for devotees who love coffee in Danang and many other places.<br>
-					It's funny that in <b><i>Just Coffee</i></b> but not just coffee, here we also offer mojito, fruit juice, fruit tea, smoothies, milkshake and greek yogurt, a healthy drink that is good for you and has a beauty effect. You know, for business purposes.<br>
-					<b><i>Just Coffee</i></b> is located at 65 Ngo Xuan Thu streets, a peaceful places, with a modern space with a bit of classic, will definitely be a place suitable for all ages, all interests, but especially suitable for those who love coffee approved to talk.<br>
-					Hope you enjoy us, both in terms of brand, space, staff and how to serve here.<br>
-					So, welcome to <b><i>Just Coffee</i></b>.<br>
-					Love, Vy.
-				</p>
-			</div>
-		</div>
-	</div>
-	<div class="container col-lg-12" style="margin: 0px">
+<div class="content" style="margin-top: 60px">
+	<div class="container col-lg-12">
 		<div class="row section-1">
 			<div class="col-lg-3 sidebar">
 				<nav class="sidebar-container">
@@ -51,11 +82,8 @@
 					</ul>
 				</nav>
 			</div>
-			<div class="row col-lg-9 menu">
-				<div class="col-lg-9-container-menu">
-					<div class="col-lg-12 title">
-						<h3 class="menu-title">menu</h3>
-					</div>
+			<div class="row menu">
+				<div class="col-lg-9-container-menu" style="margin-left: 20px">
 					<div class="diss col-lg-12">
 						<tr th:each="category,iterStat : ${categories}">
 							<div class="menu-item col-lg-12" th:id="${category.getCategoryName()}">
@@ -67,7 +95,7 @@
 											<h3 class="item" th:text="${product.productName}"></h3>
 											<img th:src="${product.url}">
 											<h4><span>price: <h4 th:text="${product.price}" style="display: inline-block"></h4> $</span></h4>
-											<a th:href="@{cart/cart}" class="order-btn">order</a>
+											<a href="#" class="order-btn">order</a>
 										</div>
 								</div>
 								</div>

@@ -56,4 +56,5 @@ public class ProductModel extends BaseModel<ProductModel> {
 
     private String url;
 
+    private String description;
 }
