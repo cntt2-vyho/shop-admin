@@ -31,6 +31,7 @@ public class HomepageController {
         return "littlecloset/index";
     }
 
+
     @GetMapping("/cart")
     public String cart(Model model) {
         model.addAttribute("products", productService.findAll());

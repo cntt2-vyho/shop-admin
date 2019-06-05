@@ -7,6 +7,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet"
           th:href="@{/webjars/startbootstrap-sb-admin-2/4.0.2/vendor/fontawesome-free/css/all.min.css}"/>
 
@@ -17,6 +18,17 @@
     <!-- Custom styles for this template-->
     <link rel="stylesheet" th:href="@{/webjars/startbootstrap-sb-admin-2/4.0.2/css/sb-admin-2.min.css}">
 
+    <style>
+        .bg-gradient-primary {
+            background-color: #000000;
+            background-image: unset;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #000;
+            border-color: #000;}
+
+    </style>
 </head>
 <body id="page-top">
 <!-- Page Wrapper -->
@@ -24,7 +36,7 @@
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
-        th:fragment="sidebar">
+        th:fragment="sidebar" style="background-color: #000">
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
@@ -153,6 +165,12 @@
                     <a class="collapse-item" th:href="@{/admin/suppliers}">Supplier</a>
                 </div>
             </div>
+        </li>
+        <li class="nav-item">
+            <a th:href="@{/}" class="nav-link collapsed">
+                <i class="fa fa-coffee" aria-hidden="true"></i>
+                <span>Homepage</span>
+            </a>
         </li>
 
 
