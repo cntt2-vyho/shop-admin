@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: 'Inconsolata', monospace;
+  background-color: #fff;
+}
+.header {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background-color: #000;
+  top: 0;
+  position: fixed;
+  z-index: 1;
+  border-bottom: solid .1px #fff;
+  color: #fff;
+}
+.header-div-container {
+  display: block;
+  margin: 0 250px;
+}
+.header-title {
+  display: inline-block;
+  left: 0;
+}
+.header-title h4 {
+  font-style: italic;
+  margin: 18px 18px 0;
+}
+.header-nav {
+  display: inline-block;
+  text-align: center;
+}
+.header-nav ul {
+  padding: 0;
+  margin: 18px 0 0;
+}
+.header-nav li {
+  list-style: none;
+  display: inline-block;
+}
+.header-nav a {
+  width: 100%;
+  text-decoration: none;
+  color:  #fff;
+  text-transform: uppercase;
+  border: none;
+  display: inline-block;
+  padding: 0 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.header-nav a:hover {
+  background-color: #ccc;
+  color: #000;
+}
+
+
+.header-user {
+  display: inline-block;
+  text-align: center;
+}
+.header-user h4 {
+  color: #fff;
+}
+
+
+.header-cart {
+  display: inline-block;
+  text-align: center;
+}
+.header-cart h4 {
+  display: inline-block;
+  margin: 8px 0;
+}
+.header-cart i {
+  color: #fff;
+}
+.header-border {
+  border: solid 1px #EA8025;
+  margin: 8px;
+}
+.header-border a {
+  position: relative;
+}
+.fa-shopping-cart {
+  font-size: 30px;
+  display: inline-block;
+}
+.fa-user, .fa-search {
+  color: #fff;
+}
+.number-cart {
+  position: absolute;
+  right: -10px;
+  margin-top: 0px;
+  border-radius: 50%;
+  background-color: #EA8025;
+  color: #fff;
+  display: inline-block;
+  height: 18px;
+  width: 15px;
+}
+
+
+
+
+
+
+.content {
+  display: block;
+  background-color: #F5F5F5;
+  width: 100%;
+  overflow: hidden;
+}
+.container {
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  margin: 30px 0;
+}
+.row {
+  display: block;
+}
+.sidebar {
+  margin-left: 250px;
+  position: fixed;
+}
+.sidebar-container {
+  display: inline-block;
+  margin: 15px;
+  margin-left: 0;
+}
+.sidebar-item:hover {
+  text-decoration: underline;
+}
+.sidebar-item {
+  display: block;
+  color:  #000;
+  text-decoration:  none;
+}
+.homepage {
+  right: 0;
+  padding: 0;
+}
+.continue {
+  font-size: 18px;
+  line-height: 1.5;
+}
+.header-li-sidebar {
+  list-style: none;
+}
+
+
+
+
+.footer {
+  display: block;
+  overflow: hidden;
+  background-color: #000;
+  margin-bottom: 0;
+}
+.footer-container {
+  margin: 0 250px;
+  display: block;
+  overflow: hidden;
+  border-bottom: solid 1px #fff;
+}
+footer h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-transform:  uppercase;
+  color:#fff;
+}
+.index {
+  overflow: hidden;
+  margin: 30px 0;
+}
+footer h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+footer h3 {
+  line-height: 18px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  color: #fff;
+}
+footer a {
+  color:#fff;
+  text-decoration: none;
+
+}
+.copyright {
+  border:  none;
+  margin: 30px 250px;
+}
+.footer-left {
+  display: inline-block;
+  color: #fff;
+  float:  left;
+}
+.footer-right {
+  display: inline-block;
+  float: right;
+  color: #fff;
+}
+.footer-title {
+  line-height: 1.2;
+  color:#fff;
+  font-style: italic;
+  font-size: 30px;
+}
+.follow-span {
+  display: inline-block;
+  padding-right: 15px;
+}
+.fa-facebook {
+  color: #3b5999;
+}
+.fa-twitter {
+  color: #55acee;
+}
+.fa-instagram {
+  color: #e4405f;
+}
+.fa-google {
+  color: #dd4b39;
+}
+.fa-youtube-play {
+  color: #cd201f;
+}
+.footer-menu-ul {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.last {
+  padding-right: 0;
+}
+.footer-li-item {
+  list-style: none;
+  display: inline-block;
+  padding: 0 20px;
+}
+.footer-menu-right-a {
+  text-decoration: none;
+  color: #999999;
+}
+.footer-li-item:hover .fa {
+  color: #fff;
+  cursor: pointer;
+}
+.help-title , .help h3 ,.help a , .address-title, .address h3{
+  color:white;
+}
+.help-title , .address-title{
+  margin: 0;
+}
+.just-coffee-link-web {
+  margin-bottom: 0;
+}

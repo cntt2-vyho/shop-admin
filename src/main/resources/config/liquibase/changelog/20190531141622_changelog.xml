@@ -5,4 +5,9 @@
             <column name="url" type="varchar(255)"/>
         </addColumn>
     </changeSet>
+    <changeSet author="shuys (generated)" id="1559312191247-2">
+        <addColumn tableName="shop_products">
+            <column name="description" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
