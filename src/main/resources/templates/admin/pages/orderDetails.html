@@ -28,7 +28,7 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Orders</h1>
+                <h1 class="h3 mb-2 text-gray-800">OrderDetails</h1>
                 <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For
                     more information about DataTables, please visit the <a href="https://datatables.net"
                                                                            target="_blank">official DataTables
@@ -37,72 +37,71 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Orders Example</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">OrderDetails Example</h6>
                     </div>
                     <div class="card-body">
 
-                        <div style="float: right; padding-right: 20px">
-
-                            <button class="text-primary" data-toggle="modal" data-target="#newOrder" style="padding: 15px 40px 15px 40px; background: beige">
-                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                                New Order
-                            </button>
-
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
-                                 role="dialog" tabindex="-1" id="newOrder">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <form action="#" method="post" novalidate="novalidate" style="min-width: 300px;" th:action="@{/admin/orderDetails}" th:object="${orderDetails}">
-                                                <h5 class="text-center">New order</h5>
-
-                                                <div class="form-group">
-                                                    <label class="col-form-label"  style="display: block">Order Name</label>
-                                                    <select  name="orderModel">
-                                                        <option th:each="order,iterStat : ${orders}"
-                                                                th:value="${order.id}"
-                                                                th:text="${order.customerModel.customerName}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-form-label" style="display: block">Product Name</label>
-                                                    <select  name="productModel">
-                                                        <option th:each="product,iterStat : ${products}"
-                                                                th:value="${product.id}"
-                                                                th:text="${product.productName}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-form-label" style="display: block">Price</label>
-                                                    <select name="price">
-                                                        <option th:each="product,iterStat : ${products}"
-                                                                th:value="${product.id}"
-                                                                th:text="${product.price}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label class="col-form-label" >quantity</label>
-                                                    <input class="form-control"
-                                                           name="quantity"
-                                                           type="text">
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                                            type="button">Close
-                                                    </button>
-                                                    <button class="btn btn-primary" type="submit">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New order
+                            </a>
+                        </div>
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example">Add Order Detail</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/orderDetails}">
+
+                                            <div class="form-group">
+                                                <label class="col-form-label"  style="display: block">Order Name :</label>
+                                                <select  name="orderModel">
+                                                    <option th:each="order,iterStat : ${orders}"
+                                                            th:value="${order.id}"
+                                                            th:text="${order.customerModel.customerName}"></option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-form-label" style="display: block">Product Name :</label>
+                                                <select  name="productModel">
+                                                    <option th:each="product,iterStat : ${products}"
+                                                            th:value="${product.id}"
+                                                            th:text="${product.productName}"></option>
+                                                </select>
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label class="col-form-label" >quantity :</label>
+                                                <input class="form-control"
+                                                       name="quantity"
+                                                       type="text">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit">Save
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="table-responsive">
                             <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
@@ -111,9 +110,7 @@
                                     <th>#</th>
                                     <th>Customer Name</th>
                                     <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantities</th>
-                                    <th>Sum</th>
+                                    <th>Quantity</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -122,32 +119,33 @@
                                     <th>#</th>
                                     <th>Customer Name</th>
                                     <th>Product Name</th>
-                                    <th>Price</th>
-                                    <th>Quantities</th>
-                                    <th>Sum</th>
+                                    <th>Quantity</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                <tr th:each="orderDetail,iterStat:${orderDetails}">
+                                <tr th:each="orderDetail,iterStat : ${orderDetails}">
                                     <th scope="row" th:text="${iterStat.count}"></th>
                                     <td th:text="${orderDetail.getOrderModel().getCustomerModel().getCustomerName()}"></td>
                                     <td th:text="${orderDetail.getProductModel().getProductName()}"></td>
-                                    <td th:text="'$'+${orderDetail.getProductModel().getPrice()}"></td>
                                     <td th:text="${orderDetail.quantity}"></td>
-                                    <td th:text="'$'+${orderDetail.getProductModel().getPrice() * orderDetail.quantity}"></td>
-
                                     <td>
                                         <a class="text-primary" data-toggle="modal"
                                            th:data-target="'#edit-'+${orderDetail.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'edit-'+${orderDetail.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Order Detail</h5>
+                                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                                type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                     <div class="modal-body">
                                                         <form action="#" method="post"  th:action="@{/admin/orderDetails}"
                                                               th:object="${orderDetail}">
@@ -155,7 +153,7 @@
                                                             <input name="id" th:value="*{id}" type="hidden"/>
 
                                                             <div class="form-group">
-                                                                <label class="col-form-label"  style="display: block">Order Name</label>
+                                                                <label class="col-form-label"  style="display: block">Order Name :</label>
                                                                 <select  name="orderModel">
                                                                     <option th:each="order,iterStat : ${orders}"
                                                                             th:value="${order.id}"
@@ -165,7 +163,7 @@
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label class="col-form-label" style="display: block">Product Name</label>
+                                                                <label class="col-form-label" style="display: block">Product Name :</label>
                                                                 <select  name="productModel">
                                                                     <option th:each="product,iterStat : ${products}"
                                                                             th:value="${product.id}"
@@ -174,19 +172,10 @@
                                                                 </select>
                                                             </div>
 
-                                                            <div class="form-group">
-                                                               <label class="col-form-label" style="display: block">Price</label>
-                                                                <select name="price">
-                                                                    <option th:each="product,iterStat : ${products}"
-                                                                    th:value="${product.id}"
-                                                                    th:text="${product.price}"
-                                                                    th:selected="${product.id==orderDetail.productModel.id}">
-                                                                    </option>
-                                                                </select>
-                                                            </div>
+
 
                                                             <div class="form-group">
-                                                                <label class="col-form-label" >quantity</label>
+                                                                <label class="col-form-label" >quantity :</label>
                                                                 <input class="form-control"
                                                                        th:value="*{quantity}"
                                                                        name="quantity"
@@ -203,6 +192,7 @@
 
                                                         </form>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -213,40 +203,38 @@
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <!-- Modal -->
-                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'popup-'+${orderDetail.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Warning !!!</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body"
-                                                         th:text="'Do you want delete order of '+${orderDetail.orderModel.customerModel.customerName}+' ?'">
+                                                    <div class="modal-body">
+                                                       <p>Do you want delete ?</p>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-secondary" data-dismiss="modal"
                                                                 type="button">No
                                                         </button>
                                                         <a class="btn btn-primary"
-                                                           th:href="@{/admin/orders/{id}/delete(id=${orderDetail.id})}">Yes</a>
+                                                           th:href="@{/orderDetails/{id}/delete(id=${orderDetail.id})}">Yes</a>
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
-                                   </td>
+
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
 
             </div>
             <!-- /.container-fluid -->

@@ -37,60 +37,66 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Employee Information</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Employees Example</h6>
                     </div>
-
                     <div class="card-body">
-                        <div style="float: right; padding-right: 20px">
 
-                            <button class="text-primary" data-toggle="modal" data-target="#newEmployee" style="padding: 15px 40px 15px 40px; background: beige">
-                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                                New Employee
-                            </button>
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New employee
+                            </a>
+                        </div>
 
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
-                                 role="dialog" tabindex="-1" id="newEmployee">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <form action="#" method="post"  th:action="@{/admin/employees}"
-                                                  th:object="${employees}">
-                                                <h5 class="text-center">New employee</h5>
-                                                <div class="form-group">
-                                                <label>First Name</label>
-                                                <input class="form-control" placeholder="First name" type="text" name="firstName"/>
-                                                </div>
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example"> Edit employee</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/employees}">
 
-                                                <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input class="form-control" placeholder="Last name" type="text" name="lastName"/>
-                                                </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Last name"
+                                                        type="text" name="lastName"/>
+                                            </div>
 
-                                                <div class="form-group">
-                                                <label>Birth date</label>
-                                                <input class="form-control" placeholder="Birth date" type="text" name="birthDate"/>
-                                                </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="first name"
+                                                        type="text" name="firstName"/>
+                                            </div>
 
-                                                <div class="form-group">
-                                                <label>Notes</label>
-                                                <input class="form-control" placeholder="Notes" type="text" name="notes"/>
-                                                </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="birth Date"
+                                                       type="text" name="birthDate"/>
+                                            </div>
 
-                                                <div class="form-group">
-                                                <label>Photo</label>
-                                                <input class="form-control" placeholder="Photo" type="text" name="photo"/>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                                            type="button">Close
-                                                    </button>
-                                                    <button class="btn btn-primary" type="submit">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="notes"
+                                                       type="text" name="notes"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="photo"
+                                                       type="text" name="photo"/>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit" >Save
+                                                </button>
+                                            </div>
+                                        </form>
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -100,27 +106,27 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Last Name</th>
-                                    <th>First Name</th>
-                                    <th>Birthday</th>
+                                    <th>FirstName</th>
+                                    <th>LastName</th>
+                                    <th>BirthDate</th>
                                     <th>Notes</th>
                                     <th>Photo</th>
                                     <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tfoot>
-                                    <tr>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
                                     <th>#</th>
-                                    <th>Last Name</th>
-                                    <th>First Name</th>
-                                    <th>Birth Date</th>
+                                    <th>FirstName</th>
+                                    <th>LastName</th>
+                                    <th>BirthDate</th>
                                     <th>Notes</th>
                                     <th>Photo</th>
                                     <th>Action</th>
-                                    </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    <tr th:each="employee,iterStat : ${employees}">
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                <tr th:each="employee,iterStat : ${employees}">
                                     <th scope="row" th:text="${iterStat.count}"></th>
                                     <td th:text="${employee.firstName}"></td>
                                     <td th:text="${employee.lastName}"></td>
@@ -132,12 +138,14 @@
                                            th:data-target="'#edit-'+${employee.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <div aria-hidden="true" aria-labelledby="editEmployee" class="modal fade"
+
+
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'edit-'+${employee.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="editEmployee">New message</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel"> Edit employee</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
@@ -146,63 +154,64 @@
                                                     <div class="modal-body">
                                                         <form action="#" method="post"  th:action="@{/admin/employees}"
                                                               th:object="${employee}">
-                                                            <h5 class="text-center">Edit employee</h5>
 
-                                                            <input name="id"  th:value="*{id}" type="hidden" />
-
-                                                            <div class="form-group">
-                                                                <label>First name</label>
-                                                                <input class="form-control" placeholder="First name"
-                                                                       th:value="*{firstName}" type="text" name="firstName"/>
-                                                            </div>
+                                                            <input name="id" th:value="*{id}" type="hidden"/>
 
                                                             <div class="form-group">
-                                                                <label>Last name</label>
                                                                 <input class="form-control" placeholder="Last name"
                                                                        th:value="*{lastName}" type="text" name="lastName"/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label>Birth Date</label>
-                                                                <input class="form-control" placeholder="Birth Date"
-                                                                       th:value="*{birthDate}" type="text" name="birthDate"/>
+                                                                <input class="form-control" placeholder="first name"
+                                                                       th:value="*{firstName}" type="text" name="firstName"/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label>Notes</label>
-                                                                <input class="form-control" placeholder="Notes"
-                                                                       th:value="*{notes}" type="text" name="notes"/>
+                                                                <input class="form-control" placeholder="birth Date" th:value="*{birthDate}"
+                                                                       type="text" name="birthDate"/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label>Photo</label>
-                                                                <input class="form-control" placeholder="Photo"
-                                                                       th:value="*{photo}" type="text" name="photo"/>
+                                                                <input class="form-control" placeholder="notes" th:value="*{notes}"
+                                                                       type="text" name="notes"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="photo" th:value="*{photo}"
+                                                                       type="text" name="photo"/>
                                                             </div>
 
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" data-dismiss="modal"
                                                                         type="button">Close
                                                                 </button>
-                                                                <button class="btn btn-primary" type="submit">Save
+                                                                <button class="btn btn-primary" type="submit" >Save
                                                                 </button>
                                                             </div>
                                                         </form>
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
+
+
+
+
+                                        <!-- Button trigger delete -->
                                         <a class="text-danger" data- data-toggle="modal"
                                            th:data-target="'#popup-'+${employee.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <!-- Modal -->
-                                        <div aria-hidden="true" aria-labelledby="deleteCustomer" class="modal fade"
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'popup-'+${employee.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteCustomer">Warning !!!</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
@@ -216,14 +225,14 @@
                                                                 type="button">No
                                                         </button>
                                                         <a class="btn btn-primary"
-                                                           th:href="@{/admin/employees/{id}/delete(id=${employee.id})}">Yes</a>
+                                                           th:href="@{/employees/{id}/delete(id=${employee.id})}">Yes</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    </tr>
-                                    </tbody>
+                                </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>

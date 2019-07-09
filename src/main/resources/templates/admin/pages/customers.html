@@ -18,10 +18,10 @@
     <div class="d-flex flex-column" id="content-wrapper">
 
         <!-- Main Content -->
-        <div id="content">
+        <div id="content" >
 
             <!-- Topbar -->
-            <nav th:replace="admin/adminLayout::topbar"></nav>
+            <nav th:replace="admin/adminLayout::topbar" ></nav>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
@@ -34,12 +34,86 @@
                                                                            target="_blank">official DataTables
                         documentation</a>.</p>
 
+
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">Customers Example</h6>
                     </div>
                     <div class="card-body">
+
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New customer
+                            </a>
+                        </div>
+
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example"> Add Customer</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/customers}">
+
+
+                                            <div class="form-group">
+
+                                                   <input class="form-control" placeholder="Customer name"
+                                                       type="text" name="customerName"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Contact name"
+                                                        type="text" name="contactName"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Address"
+                                                       type="text" name="address"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="City"
+                                                       type="text" name="city"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Postal Code"
+                                                       type="text" name="postalCode"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="Country"
+                                                       type="text" name="country"/>
+                                            </div>
+
+                                            <!--<div class="form-group">-->
+                                            <!--<button class="btn btn-block btn-primary" type="submit">-->
+                                            <!--<i class="fa fa-save"></i> Save-->
+                                            <!--</button>-->
+                                            <!--</div>-->
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit" >Save
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="table-responsive">
                             <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
                                 <thead>
@@ -76,15 +150,117 @@
                                     <td th:text="${customer.postalCode}"></td>
                                     <td th:text="${customer.country}"></td>
                                     <td>
-                                        <a class="text-primary" href="#"
-                                           th:href="@{/customers/{id}/edit(id=${customer.id})}">
-                                            <i class="fa fa-edit"></i>
 
+                                        <a class="text-primary" data-toggle="modal"
+                                           th:data-target="'#edit-'+${customer.id}">
+                                            <i class="fa fa-edit"></i>
                                         </a>
-                                        <a class="text-danger" href="#"
-                                           th:href="@{/customers/{id}/delete(id=${customer.id})}">
+
+
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
+                                             role="dialog" tabindex="-1" th:id="'edit-'+${customer.id}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"> Edit Customer</h5>
+                                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                                type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="#" method="post"  th:action="@{/admin/customers}"
+                                                              th:object="${customer}">
+
+                                                            <input name="id" th:value="*{id}" type="hidden"/>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="Customer name"
+                                                                       th:value="*{customerName}" type="text" name="customerName"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="Contact name"
+                                                                       th:value="*{contactName}" type="text" name="contactName"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="Address" th:value="*{address}"
+                                                                       type="text" name="address"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="City" th:value="*{city}"
+                                                                       type="text" name="city"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="Postal Code" th:value="*{postalCode}"
+                                                                       type="text" name="postalCode"/>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <input class="form-control" placeholder="Country" th:value="*{country}"
+                                                                       type="text" name="country"/>
+                                                            </div>
+
+                                                            <!--<div class="form-group">-->
+                                                                <!--<button class="btn btn-block btn-primary" type="submit">-->
+                                                                    <!--<i class="fa fa-save"></i> Save-->
+                                                                <!--</button>-->
+                                                            <!--</div>-->
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                                        type="button">Close
+                                                                </button>
+                                                                <button class="btn btn-primary" type="submit" >Save
+                                                                </button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <!-- Button trigger delete -->
+                                        <a class="text-danger" data- data-toggle="modal"
+                                           th:data-target="'#popup-'+${customer.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
+                                        <!-- Modal -->
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
+                                             role="dialog" tabindex="-1" th:id="'popup-'+${customer.id}">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
+                                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                                type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body"
+                                                         th:text="'Do you want delete '+${customer.customerName}+' ?'">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" data-dismiss="modal"
+                                                                type="button">No
+                                                        </button>
+                                                        <a class="btn btn-primary"
+                                                           th:href="@{/admin/customers/{id}/delete(id=${customer.id})}">Yes</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
                                     </td>
                                 </tr>
                                 </tbody>

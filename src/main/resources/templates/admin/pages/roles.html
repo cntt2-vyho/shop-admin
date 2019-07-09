@@ -18,63 +18,68 @@
     <div class="d-flex flex-column" id="content-wrapper">
 
         <!-- Main Content -->
-        <div id="content">
+        <div id="content" >
 
             <!-- Topbar -->
-            <nav th:replace="admin/adminLayout::topbar"></nav>
+            <nav th:replace="admin/adminLayout::topbar" ></nav>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Categories</h1>
+                <h1 class="h3 mb-2 text-gray-800">Roles</h1>
                 <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For
                     more information about DataTables, please visit the <a href="https://datatables.net"
                                                                            target="_blank">official DataTables
                         documentation</a>.</p>
 
+
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Categories Example</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Roles Example</h6>
                     </div>
                     <div class="card-body">
 
-                        <div style="text-align: right; padding: 20px">
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New Roles
+                            </a>
+                        </div>
 
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
-                                 role="dialog" tabindex="-1" id="newCategory">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <form action="#" method="post"  th:action="@{/admin/roles}"
-                                                  th:object="${roles}">
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example"> Add Role</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/roles}">
 
-                                                <h5 class="text-center">New category</h5>
 
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input class="form-control" placeholder="role name" type="text" name="roleName"/>
-                                                </div>
+                                            <div class="form-group">
 
-                                                <div class="form-group">
-                                                    <label>Username</label>
-                                                    <input class="form-control" name="username" placeholder="username"
-                                                           type="text"/>
-                                                </div>
+                                                   <input class="form-control" placeholder="name"
+                                                       type="text" name="name"/>
+                                            </div>
 
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                                            type="button">Close
-                                                    </button>
-                                                    <button class="btn btn-primary" type="submit">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit" >Save
+                                                </button>
+                                            </div>
+                                        </form>
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -84,16 +89,14 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Role Name</th>
-                                    <th>Username</th>
+                                    <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>#</th>
-                                    <th>Role Name</th>
-                                    <th>Username</th>
+                                    <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
@@ -101,76 +104,87 @@
                                 <tr th:each="role,iterStat : ${roles}">
                                     <th scope="row" th:text="${iterStat.count}"></th>
                                     <td th:text="${role.name}"></td>
-                                    <td th:text="${user.username}"></td>
-
                                     <td>
+
                                         <a class="text-primary" data-toggle="modal"
                                            th:data-target="'#edit-'+${role.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <div aria-hidden="true" aria-labelledby="editCategory" class="modal fade"
+
+
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'edit-'+${role.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"> Edit Customer</h5>
+                                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                                type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                     <div class="modal-body">
-                                                        <form action="#" method="post"  th:action="@{/admin/categories}"
+                                                        <form action="#" method="post"  th:action="@{/admin/customers}"
                                                               th:object="${role}">
-                                                            <h5 class="text-center">Edit category</h5>
 
-                                                            <input name="id"  th:value="*{id}" type="hidden" />
-
-                                                            <div class="form-group">
-                                                                <input class="form-control" placeholder="Category name"
-                                                                       th:value="*{name}" type="text" name="categoryName"/>
-                                                            </div>
+                                                            <input name="id" th:value="*{id}" type="hidden"/>
 
                                                             <div class="form-group">
-                                                                <input class="form-control" placeholder="Description"
-                                                                       th:value="*{username}" type="text" name="description"/>
+                                                                <input class="form-control" placeholder="name"
+                                                                       th:value="*{name}" type="text" name="name"/>
                                                             </div>
 
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" data-dismiss="modal"
                                                                         type="button">Close
                                                                 </button>
-                                                                <button class="btn btn-primary" type="submit">Save
+                                                                <button class="btn btn-primary" type="submit" >Save
                                                                 </button>
                                                             </div>
                                                         </form>
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
 
+
+
+
+                                        <!-- Button trigger delete -->
                                         <a class="text-danger" data- data-toggle="modal"
-                                           th:data-target="'#popup-'+${category.id}">
+                                           th:data-target="'#popup-'+${role.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <!-- Modal -->
-                                        <div aria-hidden="true" aria-labelledby="deleteCategory" class="modal fade"
-                                             role="dialog" tabindex="-1" th:id="'popup-'+${category.id}">
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
+                                             role="dialog" tabindex="-1" th:id="'popup-'+${role.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteCategory">Warning !!!</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body"
-                                                         th:text="'Do you want delete '+${category.categoryName}+' ?'">
+                                                         th:text="'Do you want delete '+${role.name}+' ?'">
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button class="btn btn-secondary" data-dismiss="modal"
                                                                 type="button">No
                                                         </button>
                                                         <a class="btn btn-primary"
-                                                           th:href="@{/admin/categories/{id}/delete(id=${category.id})}">Yes</a>
+                                                           th:href="@{/admin/roles/{id}/delete(id=${role.id})}">Yes</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
+
 
                                     </td>
                                 </tr>

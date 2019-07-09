@@ -103,6 +103,17 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		<!-- Mail -->
+
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>3.0.4.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
 	</dependencies>
 
 	<!-- Add config liquibase -->
@@ -134,7 +145,7 @@
 						<username>root</username>
 						<password></password>
 						<referenceUrl>
-							hibernate:spring:com.justcoffeeshop.models?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+							hibernate:spring:vn.edu.leading.shop.models?dialect=org.hibernate.dialect.MySQL5InnoDBDialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
 						</referenceUrl>
 						<verbose>true</verbose>
 						<logging>debug</logging>

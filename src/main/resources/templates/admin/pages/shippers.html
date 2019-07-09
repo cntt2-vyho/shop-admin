@@ -37,52 +37,52 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Shipper Example</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Shippers Example</h6>
                     </div>
                     <div class="card-body">
 
-                        <div style="text-align: right; padding: 20px">
+                        <div class="col-6 float-right">
+                            <a class="btn btn-success float-right"   data-toggle="modal" data-target="#new">
+                                <i class="fa fa-plus-square"></i> New shipper
+                            </a>
+                        </div>
+                        <div aria-hidden="true" aria-labelledby="example" class="modal fade"
+                             role="dialog" tabindex="-1" id="new">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="example"> Add shipper</h5>
+                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                type="button">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="#" method="post"  th:action="@{/admin/shippers}">
 
-                            <button class="text-primary" data-toggle="modal" data-target="#newShipper" style="padding: 15px 40px 15px 40px; background: beige">
-                                <i class="fa fa-plus-square-o" aria-hidden="true"></i>
-                                New Shipper
-                            </button>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="shipper name"
+                                                       type="text" name="shipperName"/>
+                                            </div>
 
-                            <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
-                                 role="dialog" tabindex="-1" id="newShipper">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <form action="#" method="post"  th:action="@{/admin/shippers}"
-                                                  th:object="${shippers}">
-
-                                                <h5 class="text-center">New shipper</h5>
-
-                                                <div class="form-group">
-                                                    <label>Shipper name</label>
-                                                    <input class="form-control" placeholder="Shipper name" type="text" name="shipperName"/>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Phone</label>
-                                                    <input class="form-control" placeholder="Phone" type="text" name="phone"/>
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" data-dismiss="modal"
-                                                            type="button">Close
-                                                    </button>
-                                                    <button class="btn btn-primary" type="submit">Save
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                            <div class="form-group">
+                                                <input class="form-control" placeholder="phone"
+                                                        type="text" name="phone"/>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" data-dismiss="modal"
+                                                        type="button">Close
+                                                </button>
+                                                <button class="btn btn-primary" type="submit" >Save
+                                                </button>
+                                            </div>
+                                        </form>
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="table-responsive">
                             <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
@@ -90,7 +90,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Shipper Name</th>
-                                    <th>Phone </th>
+                                    <th>Phone</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -98,7 +98,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Shipper Name</th>
-                                    <th>Phone </th>
+                                    <th>Phone</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
@@ -107,59 +107,69 @@
                                     <th scope="row" th:text="${iterStat.count}"></th>
                                     <td th:text="${shipper.shipperName}"></td>
                                     <td th:text="${shipper.phone}"></td>
-
                                     <td>
                                         <a class="text-primary" data-toggle="modal"
                                            th:data-target="'#edit-'+${shipper.id}">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <div aria-hidden="true" aria-labelledby="editShipper" class="modal fade"
+
+
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'edit-'+${shipper.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel"> Edit shipper</h5>
+                                                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                                                type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                     <div class="modal-body">
                                                         <form action="#" method="post"  th:action="@{/admin/shippers}"
                                                               th:object="${shipper}">
-                                                            <h5 class="text-center">Edit shipper</h5>
 
-                                                            <input name="id"  th:value="*{id}" type="hidden" />
+                                                            <input name="id" th:value="*{id}" type="hidden"/>
 
                                                             <div class="form-group">
-                                                                <label>Shipper name</label>
-                                                                <input class="form-control" placeholder="Shipper name"
+                                                                <input class="form-control" placeholder="shipper name"
                                                                        th:value="*{shipperName}" type="text" name="shipperName"/>
                                                             </div>
 
                                                             <div class="form-group">
-                                                                <label>Phone</label>
-                                                                <input class="form-control" placeholder="Phone"
-                                                                       th:value="*{phone}" type="text" name="Phone"/>
+                                                                <input class="form-control" placeholder="phone"
+                                                                       th:value="*{phone}" type="text" name="phone"/>
                                                             </div>
-
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" data-dismiss="modal"
                                                                         type="button">Close
                                                                 </button>
-                                                                <button class="btn btn-primary" type="submit">Save
+                                                                <button class="btn btn-primary" type="submit" >Save
                                                                 </button>
                                                             </div>
                                                         </form>
+
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
 
+
+
+
+                                        <!-- Button trigger delete -->
                                         <a class="text-danger" data- data-toggle="modal"
                                            th:data-target="'#popup-'+${shipper.id}">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         <!-- Modal -->
-                                        <div aria-hidden="true" aria-labelledby="deleteCategory" class="modal fade"
+                                        <div aria-hidden="true" aria-labelledby="exampleModalLabel1" class="modal fade"
                                              role="dialog" tabindex="-1" th:id="'popup-'+${shipper.id}">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteCategory">Warning !!!</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel1">Warning !!!</h5>
                                                         <button aria-label="Close" class="close" data-dismiss="modal"
                                                                 type="button">
                                                             <span aria-hidden="true">&times;</span>
@@ -173,12 +183,11 @@
                                                                 type="button">No
                                                         </button>
                                                         <a class="btn btn-primary"
-                                                           th:href="@{/admin/categories/{id}/delete(id=${shipper.id})}">Yes</a>
+                                                           th:href="@{/shippers/{id}/delete(id=${shipper.id})}">Yes</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </td>
                                 </tr>
                                 </tbody>
