@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>JUST COFFEE</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/asset/css/gridbootstrap.css}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=vietnamese" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" th:href="@{/asset/css/layout.css}">
+  <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <header class="header" th:fragment="header">
+    <div class="header-div-container">
+      <div class="header-item header-title col-lg-2"><h4>JUST COFFEE</h4></div>
+      <div class="header-item header-nav col-lg-6"><nav>
+        <ul>
+          <li><a href="#">home</a></li>
+          <li><a href="#">about</a></li>
+          <li><a th:href="@{/}">menu</a></li>
+          <li><a href="#">where</a></li>
+        </ul>
+      </nav></div>
+      <div class="header-item header-cart col-lg-2">
+        <div class="header-border">
+          <a th:href="@{/cart}"><h4>
+
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="number-cart" id="span-cart"></span>
+          </h4></a>
+        </div>
+      </div>
+      <div class="header-item header-user col-lg-2">
+        <h4>
+          <span><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+           |
+           <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+         </span>
+        </h4>
+      </div>
+    </div>
+  </header><!-- /header -->
+  <footer class=" row footer" th:fragment="footer">
+    <div class="footer-container">
+      <div class="index">
+        <div class="col-lg-4 logo">
+          <h1 class="footer-title">JUST COFFEE</h1>
+        </div>
+        <div class="col-lg-4 hepl">
+          <h2 class="help-title">help</h2>
+          <h3>hotline : 1900 1909</h3>
+          <h3>hotmail : <a href="#" title="">justcoffee.dn@gmail.com</a></h3>
+        </div>
+        <div class="col-lg-4 address">
+          <h2 class="address-title">address</h2>
+          <h3>65 Ngo Xuan Thu, Hoa Hiep Bac, Lien Chieu, Da Nang</h3>
+          <h3>0903904127</h3>
+          <h3>(0236) 3 772 540</h3>
+          <h3 class="just-coffee-link-web">justcoffee.vn</h3>
+        </div>
+      </div>
+    </div>
+    <div class="footer-container copyright">
+      <span class="footer-left">Copyright © 2019 Just Coffee. All rights reserved.</span>
+      <div class="footer-right">
+        <span class="follow-span">follow us</span>
+        <ul class="footer-menu-ul">
+          <li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+          <li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+          <li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-google" aria-hidden="true"></i></a></li>
+          <li class="footer-li-item"><a href="#" class="footer-menu-right-a"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+          <li class="footer-li-item last"><a href="#" class="footer-menu-right-a"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
